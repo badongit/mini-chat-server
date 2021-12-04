@@ -7,6 +7,7 @@ const router = require("./routes");
 const fileupload = require("express-fileupload");
 const chatServer = require("./socket/chatServer");
 const cleanTempSchedule = require("./helpers/cleanTempSchedule");
+const redisClient = require("./configs/redis");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(
 app.use(express.static("public"));
 
 connectDB();
+redisClient.connect();
 router(app);
 cleanTempSchedule();
 

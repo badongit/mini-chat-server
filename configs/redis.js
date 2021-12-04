@@ -1,13 +1,10 @@
-const redis = require("promise-redis")();
+const redis = require("redis");
 const configuration = require("./configuration");
 
-const redisClient = redis.createClient(
-  configuration.redis.PORT,
-  configuration.redis.HOST,
-  {
-    password: configuration.redis.PASSWORD,
-  }
-);
+const redisClient = redis.createClient({
+  socket: { port: configuration.redis.PORT, host: configuration.redis.HOST },
+  password: configuration.redis.PASSWORD,
+});
 
 redisClient.on("connect", () => {
   console.log("Redis connected");

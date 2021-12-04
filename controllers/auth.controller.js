@@ -32,7 +32,6 @@ module.exports.register = asyncHandle(async (req, res, next) => {
 
 module.exports.login = asyncHandle(async (req, res, next) => {
   const { username, password } = req.body;
-  console.log({ username, password });
 
   if (!username || !password) {
     return next(new ErrorResponse("Invalid username or password", 400));
