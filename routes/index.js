@@ -5,6 +5,10 @@ const messageRouter = require("./message.router");
 const userRouter = require("./user.router");
 
 module.exports = (app) => {
+  app.get("/", (req, res) => {
+    res.send("Hello mini chat");
+  });
+
   app.use("/api/auth", authRouter);
 
   app.use("/api/conversations", conversationRouter);
