@@ -6,7 +6,7 @@ const { SocketEvent, SocketMessage } = require("../constants");
 
 module.exports = (io, socket) => async (req) => {
   try {
-    const { text, userId } = req;
+    const { text, userId, subId } = req;
     let conversationId = req.conversationId;
     const receiver = await User.findById(userId);
     const sender = await User.findById(socket.currentUser._id);
@@ -51,6 +51,7 @@ module.exports = (io, socket) => async (req) => {
                 conversation: newConversation._id,
                 sender,
                 text,
+                subId,
               },
             ],
             { session }
@@ -105,6 +106,7 @@ module.exports = (io, socket) => async (req) => {
             conversation: conversation._id,
             sender,
             text,
+            subId,
           },
         ],
         { session }
