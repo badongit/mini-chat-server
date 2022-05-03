@@ -9,6 +9,9 @@ const MessageSchema = new Schema(
       ref: "conversations",
       required: [true, "conversation is required"],
     },
+    subId: {
+      type: String,
+    },
     sender: {
       type: Schema.Types.ObjectId,
       ref: "users",
